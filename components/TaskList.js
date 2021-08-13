@@ -2,14 +2,21 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, RefreshControl } from 'react-native';
 import TaskItem from './TaskItem';
+
 import { deleteTask, getTasks } from '../api';
+import { useIsFocused } from '@react-navigation/native';
+
 const TaskList = props => {
   const [tasks, setTasks] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+  
+  // REVIEW: revisa cada vez q tengo al frente esta screen
+  const isFocused = useIsFocused();
+
   useEffect(() => {
     console.log('loaded');
     loadTasks();
-  }, []);
+  }, [isFocused]);
 
   const loadTasks = async () => {
     const data = await getTasks();

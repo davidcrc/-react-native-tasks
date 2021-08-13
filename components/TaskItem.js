@@ -1,8 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-
+// REVIEW: Important hook to get navigation
+import { useNavigation } from '@react-navigation/native';
 
 const TaskItem = ({ task, handleDelete }) => {
+
+  const navigation = useNavigation()
+
   return (
     <View style={styles.itemContainer}>
       <View>
@@ -16,6 +20,10 @@ const TaskItem = ({ task, handleDelete }) => {
             backgroundColor: '#78e08f',
             padding: 7,
             borderRadius: 5,
+          }}
+          onPress={() => {
+            console.log('actualizame', task.id)
+            navigation.navigate('TaskFormScreen', { id: task.id })
           }}>
           <Text> Edit </Text>
         </TouchableOpacity>
