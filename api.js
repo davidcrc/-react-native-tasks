@@ -17,3 +17,9 @@ export const saveTask = async (newTask) => {
 
   return await res.json();
 }
+
+export const deleteTask = async (id) => {
+  await fetch(`${API}/${id}`, {
+    method: "DELETE",
+  });
+};

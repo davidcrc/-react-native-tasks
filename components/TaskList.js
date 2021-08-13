@@ -2,30 +2,35 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, RefreshControl } from 'react-native';
 import TaskItem from './TaskItem';
-import { getTasks } from '../api';
+import { deleteTask, getTasks } from '../api';
 const TaskList = props => {
   const [tasks, setTasks] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+  useEffect(() => {
+    console.log('loaded');
+    loadTasks();
+  }, []);
 
-  const loadTask = async () => {
+  const loadTasks = async () => {
     const data = await getTasks();
     setTasks(data);
     // console.log("get tasks", data);
   };
-  useEffect(() => {
-    console.log('loaded');
-    loadTask();
-  }, []);
+
+  const handleDelete = async (id) => {
+    await deleteTask(id)
+    await loadTasks();
+  }
 
   const renderItem = ({ item }) => {
-    return <TaskItem task={item} />;
+    return <TaskItem task={item} handleDelete={handleDelete} />;
   };
 
   // REVIEW: How use refreshing
   const onRefresh = React.useCallback(async () => {
     console.log('refrescando');
     setRefreshing(true);
-    await loadTask();
+    await loadTasks();
     setRefreshing(false);
     console.log('dejar de refrescando');
   });
