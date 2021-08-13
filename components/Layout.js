@@ -1,8 +1,13 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View, StatusBar } from 'react-native';
 
-const Layout = ({children}) => {
-  return <View style={styles.container} >{children}</View>;
+const Layout = ({ children }) => {
+  return (
+    <View style={styles.container}>
+      <StatusBar backgroundColor='#222f3e' />
+      {children}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -12,5 +17,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-})
+});
 export default Layout;
