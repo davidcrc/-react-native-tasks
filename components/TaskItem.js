@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 // REVIEW: Important hook to get navigation
 import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const TaskItem = ({ task, handleDelete }) => {
 
@@ -15,32 +16,33 @@ const TaskItem = ({ task, handleDelete }) => {
       </View>
 
       <View style={{ flexDirection: 'row' }}>
-        <TouchableOpacity
+        <Icon
           style={{
-            backgroundColor: '#78e08f',
+            color: '#78e08f',
             padding: 7,
             borderRadius: 5,
           }}
+          name="edit"
+          size={24}
           onPress={() => {
             console.log('actualizame', task.id)
             navigation.navigate('TaskFormScreen', { id: task.id })
-          }}>
-          <Text> Edit </Text>
-        </TouchableOpacity>
+          }}
+        />
 
-        <TouchableOpacity
+        <Icon
           style={{
-            backgroundColor: '#ee5253',
+            color: '#ee5253',
             padding: 7,
             borderRadius: 5,
           }}
+          name="trash-o"
+          size={24}
           onPress={() => {
             console.log('Eliminame', task.id)
             handleDelete(task.id)
           }}
-        >
-          <Text> Delete </Text>
-        </TouchableOpacity>
+        />
       </View>
     </View>
   );

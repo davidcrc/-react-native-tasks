@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Icon from 'react-native-vector-icons/Entypo';
 
 import HomeScreen from './screens/HomeScreen';
 import TaskFormScreen from './screens/TaskFormScreen';
@@ -20,14 +21,14 @@ const App = () => {
             headerStyle: {backgroundColor: '#222f3e'},
             headerTitleStyle: {color: '#ffffff'},
             headerRight: () => (
-              <TouchableOpacity
+              <Icon
+                style={{backgroundColor: '#222f3e', textAlign: 'center', color: '#ffffff'}}
+                name="add-to-list"
+                size={32}
                 onPress={() => {
                   navigation.navigate('TaskFormScreen');
-                }}>
-                <Text style={{color: '#fff', marginRight: 20, fontSize: 15}}>
-                  New
-                </Text>
-              </TouchableOpacity>
+                }}
+              />
             ),
           })}
         />
@@ -40,7 +41,7 @@ const App = () => {
               backgroundColor: '#222f3e',
             },
             headerTitleStyle: {color: '#ffffff'},
-            headerTintColor: '#ffffff'
+            headerTintColor: '#ffffff',
           }}
         />
       </Stack.Navigator>
