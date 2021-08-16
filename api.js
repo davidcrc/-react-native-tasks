@@ -1,4 +1,6 @@
-const API = 'http://10.0.2.2:3000/tasks'
+import {API_URL} from "@env"
+
+const API = API_URL
 
 export const getTasks = async () => {
   const res = await fetch(API)
